@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter,Roboto } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
+import "@/css/euclid-circular-a-font.css";
+import "@/css/style.css";
 import "./globals.css";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import { NextAuthProvider } from "@/components/providers/authProviders";
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,19 +18,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <NextAuthProvider>
-    <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        <main>
-          <div className="container mx-auto my-5">
+    // supress client and server warning
+    <html lang="en" suppressHydrationWarning={false}>
+      <body>
+        <>
+          <NextAuthProvider>
+            <Header />
             {children}
-          </div>
-        </main>
-        
-        <Footer />
+            <Footer />
+          </NextAuthProvider>
+        </>
       </body>
     </html>
-    </NextAuthProvider>
   );
 }

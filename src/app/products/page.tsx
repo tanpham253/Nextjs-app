@@ -12,7 +12,9 @@ async function getProducts() {
    * NextJS nó đã hỗ trợ cache lại
    */
   
-  const res = await fetch('https://api.escuelajs.co/api/v1/products', {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const res = await fetch(`${apiUrl}/v1/products`, {
     //cache: 'force-cache',
     next: { 
       revalidate: 30, //đơn vị là seconds
